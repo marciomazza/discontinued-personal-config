@@ -1,0 +1,11 @@
+---
+- shell: find {{ ansible_env.HOME }}/.mozilla/firefox -name *.default
+  register: firefox_profile
+
+- name: 4k laptop display - firefox scaling
+  file:
+    src: "{{ ansible_env.HOME }}/.z/roles/common/files/firefox/user.js"
+    dest: "{{ firefox_profile.stdout }}/user.js"
+    state: link
+
+
