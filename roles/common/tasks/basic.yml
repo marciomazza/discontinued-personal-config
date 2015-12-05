@@ -1,0 +1,20 @@
+---
+- name: install various
+  apt:
+    pkg: "{{ item }}"
+    state: installed
+  with_items:
+    - vlc
+  sudo: yes
+
+- name: enable workspaces - two horizontal
+  gsettings:
+    schema: org.compiz.core:/org/compiz/profiles/unity/plugins/core/
+    key: hsize
+    int: 2
+
+- name: enable workspaces - two vertical
+  gsettings:
+    schema: org.compiz.core:/org/compiz/profiles/unity/plugins/core/
+    key: vsize
+    int: 2

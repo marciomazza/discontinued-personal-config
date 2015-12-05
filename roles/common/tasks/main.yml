@@ -1,0 +1,7 @@
+---
+  - include: basic.yml
+  - include: bash_customizations.yml
+  - include: numix.yml
+  - include: chrome.yml
+  - include: work.yml
+  - include: vim.yml

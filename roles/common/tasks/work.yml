@@ -1,0 +1,19 @@
+---
+
+- name: general work deps
+  apt:
+    name: "{{ item }}"
+    state: installed
+    update_cache: yes
+  with_items:
+    - python-pip
+    - python-dev
+  sudo: yes
+
+- name: install virtualenvwrapper
+  pip:
+    name: "{{ item }}"
+  with_items:
+    - virtualenvwrapper
+    - ipython
+  sudo: yes
