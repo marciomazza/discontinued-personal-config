@@ -4,6 +4,7 @@
     pkg: "{{ item }}"
   with_items:
     - tree
+    - trash-put
     - xclip
     - curl
     - vlc
