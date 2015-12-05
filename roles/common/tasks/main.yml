@@ -1,5 +1,7 @@
 ---
-  - include: bash_customizations.yml
-  - include: desktop.yml
-  - include: 4k.yml
-    when: ansible_product_version == "Lenovo Yoga 2 Pro"
+
+- include: bash_customizations.yml
+- include: basic.yml
+- include: desktop.yml
+- include: 4k.yml
+  when: ansible_product_version == "Lenovo Yoga 2 Pro"
