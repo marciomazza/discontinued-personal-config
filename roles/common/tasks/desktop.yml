@@ -1,0 +1,9 @@
+---
+- name: desktop - disable annoying show HUD on Alt
+  command: dconf write /org/compiz/integrated/show-hud '[""]'
+
+- name: desktop - workspaces 2x2
+  command:  dconf write /org/compiz/profiles/unity/plugins/core/{{ item }} 2
+  with_items:
+  - hsize
+  - vsize
