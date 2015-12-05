@@ -1,0 +1,35 @@
+---
+# based on https://raw.githubusercontent.com/iknite/ansible-spotify/master/tasks/main.yml
+
+- name: spotify - Add apt keys
+  apt_key: keyserver=keyserver.ubuntu.com id={{ item }}
+  with_items:
+    - 94558F59
+    - D2C19886
+  sudo: yes
+
+- name: spotify - Add repository
+  apt_repository: repo='deb http://repository.spotify.com stable non-free'
+  sudo: yes
+
+- name: spotify - Install spotify
+  apt: name=spotify-client update_cache=yes state=latest
+  sudo: yes
+
+# FIX for ubuntu 15.10
+- name: spotify - check if libgcrypt11 is installed
+  command: dpkg-query -l libgcrypt11
+  register: is_installed
+  ignore_errors: True
+  changed_when: no
+
+- name: spotify - download libgcrypt11
+  get_url:
+    url: https://launchpad.net/ubuntu/+archive/primary/+files/libgcrypt11_1.5.3-2ubuntu4.2_amd64.deb
+    dest: /tmp
+  when: is_installed.stderr
+
+- name: spotify - install libgcrypt11
+  apt: deb="/tmp/libgcrypt11_1.5.3-2ubuntu4.2_amd64.deb"
+  sudo: yes
+  when: is_installed.stderr
