@@ -1,6 +1,6 @@
 ---
 - name: desktop - dconf customizations 
-  command:  dconf write {{ item }}
+  command: dconf write {{ item }}
   with_items:
   # disable show hud on Alt
   - /org/compiz/integrated/show-hud '[""]'
