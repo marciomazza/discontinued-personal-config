@@ -62,4 +62,19 @@
     requirements: "{{ confdir }}/vimrc/requirements.txt"
   sudo: yes
 
-# TODO setup special powerline fonts
+# setup powerline fonts
+
+- get_url:
+    url: https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf
+    dest: /usr/share/fonts/
+  sudo: yes
+
+- shell: sudo fc-cache -vf
+  sudo: yes
+
+- get_url:
+    url: https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
+    dest: /etc/fonts/conf.d/
+  sudo: yes
+
+
