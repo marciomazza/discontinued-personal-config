@@ -1,3 +1,4 @@
 ---
 fullname: Marcio Mazza
 email: marciomazza@gmail.com
+confdir: "{{ ansible_env.HOME }}/.z"

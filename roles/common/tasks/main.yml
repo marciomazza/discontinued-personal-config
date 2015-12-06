@@ -6,3 +6,4 @@
   when: ansible_product_version == "Lenovo Yoga 2 Pro"
 - include: spotify.yml
 - include: git.yml
+- include: vim.yml
