@@ -11,5 +11,10 @@
   - /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps']"
   # auto hide launcher
   - /org/compiz/profiles/unity/plugins/unityshell/launcher-hide-mode 1
+  # transparent upper panel
+  - /org/compiz/profiles/unity/plugins/unityshell/panel-opacity 0.0
+  # disable unity Integration Prompts
+  - /com/canonical/unity/webapps/preauthorized-domains "@as []"
+  - /com/canonical/unity/webapps/integration-allowed "false"
 
   # TODO... general desktop scaling (set manually in Display > Scale for menu and title bars)
