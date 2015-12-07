@@ -1,0 +1,54 @@
+- pip:
+    name: "{{ item }}"
+  with_items:
+    - virtualenvwrapper
+    - ipython
+    - docutils
+  sudo: yes
+
+- apt:
+    name: "{{ item }}"
+  with_items:
+    # to enable copy and paste in IPython
+    - python-tk
+
+    # for Plone 4
+    # http://plone.org/documentation/manual/installing-plone/installing-on-linux-unix-bsd/debian-libraries
+    - build-essential
+    - libbz2-dev
+    - libjpeg62-dev
+    - libreadline-gplv2-dev
+    - libssl-dev
+    - libxml2-dev
+    - libxslt1-dev
+    - poppler-utils
+    - python-dev
+    - wv
+    - zlib1g-dev
+    - xpdf # XXX isso é para o portal modelo???
+  sudo: yes
+
+- apt: name=python-ldap state=build-dep
+  sudo: yes
+
+# IPython startup scripts
+- command: ipython profile create
+- command: ipython profile create zope2
+- file:
+    src: "{{ files }}/ipython/{{ item | basename }}"
+    dest: "{{ home }}/.ipython/{{ item }}"
+    state: link
+  with_items:
+    - profile_default/startup/virtualenv-for-ipython.py
+    - profile_zope2/startup/ipy_profile_zope.py
+
+# buildout
+- file: state=directory path="{{ home }}/.buildout"
+- file: state=directory path="{{ home }}/.buildout/eggs"
+- file: state=directory path="{{ home }}/.buildout/downloads"
+- file: state=directory path="{{ home }}/.buildout/extends"
+- template: src=buildout/default.cfg dest="{{ home }}/.buildout/default.cfg"
+
+# To debug nicely with sauna.reload
+# https://github.com/collective/sauna.reload#debugging-with-saunareload
+- file: src="{{ files }}/.pdbrc" dest="{{ home }}/.pdbrc" state=link

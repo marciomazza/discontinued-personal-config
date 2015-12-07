@@ -7,3 +7,4 @@
 - include: spotify.yml
 - include: git.yml
 - include: vim.yml
+- include: python.yml
