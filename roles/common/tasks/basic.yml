@@ -2,10 +2,24 @@
 - name: common programs
   apt:
     pkg: "{{ item }}"
+  sudo: yes
   with_items:
+
+    # basic
     - tree
     - trash-cli
     - xclip
     - curl
+    - terminator
+
+    # dev
+    - subversion
+    - mercurial
+
+    # apps
     - vlc
-  sudo: yes
+    - gimp
+    - imagemagick
+    - chromium-browser
+    - unity-tweak-tool
+    - gnome-tweak-tool
