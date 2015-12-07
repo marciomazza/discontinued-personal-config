@@ -11,8 +11,8 @@
 
 - name: git - link .gitignore
   file:
-    src: "{{ ansible_env.HOME }}/.z/roles/common/files/.gitignore"
-    dest: "{{ ansible_env.HOME }}/.gitignore"
+    src: "{{ files }}/.gitignore"
+    dest: "{{ home }}/.gitignore"
     state: link
 
 - name: git - global configs

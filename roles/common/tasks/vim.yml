@@ -55,7 +55,7 @@
 
 - file:
     src: "{{ confdir }}/vimrc/.vimrc"
-    dest: "{{ ansible_env.HOME }}/.vimrc"
+    dest: "{{ home }}/.vimrc"
     state: link
 
 - pip:
