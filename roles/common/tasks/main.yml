@@ -9,3 +9,4 @@
 - include: vim.yml
 - include: python.yml
 - include: etckeeper.yml
+- include: numix.yml

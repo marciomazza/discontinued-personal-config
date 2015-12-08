@@ -1,0 +1,13 @@
+---
+- apt_repository: repo='ppa:numix/ppa'
+  sudo: yes
+
+- apt:
+    name: "{{ item  }}"
+  sudo: yes
+  with_items:
+    - numix-gtk-theme
+    - numix-icon-theme-circle
+
+- command: dconf write /org/gnome/desktop/interface/gtk-theme "'Numix'"
+- command: dconf write /org/gnome/desktop/interface/icon-theme "'Numix-Circle'"
