@@ -10,3 +10,4 @@
 - include: python.yml
 - include: etckeeper.yml
 - include: numix.yml
+- include: chrome.yml
