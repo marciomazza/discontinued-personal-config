@@ -15,6 +15,9 @@
     # dev
     - subversion
     - mercurial
+    - mysql-server
+    - mysql-client
+    - postgresql
 
     # apps
     - vlc
