@@ -91,7 +91,10 @@ class ZopeDebug(object):
         try:
             from zope.component import getSiteManager
             from zope.component import getGlobalSiteManager
-            from zope.app.component.hooks import setSite
+            try:
+                from zope.app.component.hooks import setSite
+            except ImportError:
+                from zope.component.hooks import setSite
 
             if self.portal is not None:
                 setSite(self.portal)
@@ -102,6 +105,7 @@ class ZopeDebug(object):
                 if sm is gsm:
                     print "ERROR SETTING SITE!"
         except:
+            # XXX: What exceptions is this supposed to catch?
             pass
 
     @property
@@ -298,8 +302,13 @@ zope_debug = None
 
 
 def ipy_set_trace():
-    import IPython
-    IPython.Debugger.Pdb().set_trace()
+    try:
+        from IPython import Debugger
+        Debugger.Pdb().set_trace()
+    except ImportError:
+        # IPython 0.10.2+
+        from IPython.core.debugger import Pdb
+        Pdb().set_trace()
 
 
 def main():
