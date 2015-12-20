@@ -17,6 +17,7 @@
     - mercurial
     - mysql-server
     - mysql-client
+    - libmysqlclient-dev # to be able to pip install MySQL-python
     - mysql-workbench
     - postgresql
     - pgadmin3
