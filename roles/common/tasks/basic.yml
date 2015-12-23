@@ -5,16 +5,21 @@
   sudo: yes
   with_items:
 
-    # basic
+    # basic ######################################
     - tree
     - trash-cli
     - xclip
     - curl
     - terminator
 
-    # dev
+    # dev ########################################
+    # version control
+    - git
+    - gitk
     - subversion
     - mercurial
+
+    # databases
     - mysql-server
     - mysql-client
     - libmysqlclient-dev # to be able to pip install MySQL-python
@@ -22,7 +27,10 @@
     - postgresql
     - pgadmin3
 
-    # apps
+    # dev tools
+    - ruby-sass
+
+    # desktop apps ###############################
     - vlc
     - gimp
     - imagemagick
