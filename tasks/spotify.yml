@@ -13,7 +13,7 @@
   sudo: yes
 
 - name: spotify -- Install spotify
-  apt: name=spotify-client update_cache=yes state=latest
+  apt: name=spotify-client
   sudo: yes
 
 # FIX for ubuntu 15.10
