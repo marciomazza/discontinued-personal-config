@@ -85,18 +85,26 @@
 
 # setup powerline fonts
 
+- name: vim -- powerline -- check absent
+  shell: ls /usr/share/fonts/PowerlineSymbols.otf && ls /etc/fonts/conf.d/10-powerline-symbols.conf
+  register: check_powerline_absent
+  ignore_errors: True
+
 - name: vim -- powerline -- download PowerlineSymbols.otf
   get_url:
     url: https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf
     dest: /usr/share/fonts/
   sudo: yes
+  when: check_powerline_absent.rc
 
 - name: vim -- powerline -- update font cache
   shell: sudo fc-cache -vf
   sudo: yes
+  when: check_powerline_absent.rc
 
 - name: vim -- powerline -- download 10-powerline-symbols.conf
   get_url:
     url: https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
     dest: /etc/fonts/conf.d/
   sudo: yes
+  when: check_powerline_absent.rc
