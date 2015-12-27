@@ -12,7 +12,12 @@
   sudo: yes
   when: check_node_absent.rc
 
-- npm: name=less global=yes
+- name: node - custom packages
+  npm: name="{{ item }}" global=yes
+  with_items:
+  - less
+  - grunt
+  - grunt-cli
   sudo: yes
 
 
