@@ -1,0 +1,25 @@
+---
+- name: my local machine setup
+  hosts: local
+  connection: local
+
+  vars:
+    fullname: Marcio Mazza
+    email: marciomazza@gmail.com
+    home: "{{ ansible_env.HOME }}"
+    confdir: "{{ ansible_env.HOME }}/.z"
+    files: "{{ confdir }}/files"
+
+  tasks:
+    - include: tasks/4k.yml
+      when: ansible_product_version == "Lenovo Yoga 2 Pro"
+    - include: tasks/bash_customizations.yml
+    - include: tasks/basic.yml
+    - include: tasks/chrome.yml
+    - include: tasks/desktop.yml
+    - include: tasks/etckeeper.yml
+    - include: tasks/git.yml
+    - include: tasks/numix.yml
+    - include: tasks/python.yml
+    - include: tasks/spotify.yml
+    - include: tasks/vim.yml

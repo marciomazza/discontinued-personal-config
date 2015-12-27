@@ -1,6 +1,0 @@
----
-fullname: Marcio Mazza
-email: marciomazza@gmail.com
-home: "{{ ansible_env.HOME }}"
-confdir: "{{ ansible_env.HOME }}/.z"
-files: "{{ confdir }}/roles/common/files"

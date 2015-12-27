@@ -4,7 +4,7 @@
 
 - name: 4k laptop display - firefox scaling
   file:
-    src: "{{ home }}/.z/roles/common/files/firefox/user.js"
+    src: "{{ files }}/firefox/user.js"
     dest: "{{ firefox_profile.stdout }}/user.js"
     state: link
 
