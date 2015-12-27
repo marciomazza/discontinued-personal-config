@@ -1,5 +1,5 @@
 ---
-- name: git - deps
+- name: git -- deps
   apt:
     pkg: "{{ item }}"
   with_items:
@@ -9,13 +9,13 @@
     - meld
   sudo: yes
 
-- name: git - link .gitignore
+- name: git -- link .gitignore
   file:
     src: "{{ files }}/.gitignore"
     dest: "{{ home }}/.gitignore"
     state: link
 
-- name: git - global configs
+- name: git -- global configs
   command: git config --global {{ item }}
   with_items:
   - color.ui true
@@ -26,6 +26,7 @@
   - alias.ci commit
   - alias.co checkout
   - alias.df 'diff --color-words'
+  - alias.stash 'stash -u'
   - user.name '{{ fullname }}'
   - user.email '{{ email }}'
   # explicitly adopt default push behaviour of git 2.0 and stop warning message

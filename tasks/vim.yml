@@ -2,12 +2,13 @@
 # vim with python 3 support
 # based on http://www.xorpd.net/blog/vim_python3_install.html
 
-- name: vim - check if vim is absent
+- name: vim -- check if vim is absent
   shell: vim --version | grep -q '+python3'
   register: check_vim_absent
   ignore_errors: True
 
-- apt:
+- name: vim -- deps
+  apt:
     pkg: "{{ item }}"
   with_items:
     - python-dev
@@ -23,16 +24,19 @@
   sudo: yes
   when: check_vim_absent.rc
 
-- git:
+- name: vim -- clone repo
+  git:
     repo: https://github.com/vim/vim.git
     dest: /tmp/vim
   when: check_vim_absent.rc
 
-- shell: python3-config --configdir
+- name: vim -- grab python3 config dir
+  shell: python3-config --configdir
   register: python3_config_dir
   when: check_vim_absent.rc
 
-- shell: "./configure
+- name: vim -- configure
+  shell: "./configure
           --enable-perlinterp
           --enable-python3interp
           --enable-rubyinterp
@@ -48,12 +52,14 @@
     chdir: /tmp/vim
   when: check_vim_absent.rc
 
-- shell: make
+- name: vim -- make
+  shell: make
   args:
     chdir: /tmp/vim
   when: check_vim_absent.rc
 
-- shell: make install
+- name: vim -- make install
+  shell: make install
   args:
     chdir: /tmp/vim
   sudo: yes
@@ -61,30 +67,36 @@
 
 # my personal vim configs
 
-- git:
+- name: vim -- clone my personal vim configs
+  git:
     repo: git@github.com:marciomazza/vimrc.git
     dest: "{{ confdir }}/vimrc"
 
-- file:
+- name: vim -- link .vimrc
+  file:
     src: "{{ confdir }}/vimrc/.vimrc"
     dest: "{{ home }}/.vimrc"
     state: link
 
-- pip:
+- name: vim -- install requirements
+  pip:
     requirements: "{{ confdir }}/vimrc/requirements.txt"
   sudo: yes
 
 # setup powerline fonts
 
-- get_url:
+- name: vim -- powerline -- download PowerlineSymbols.otf
+  get_url:
     url: https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf
     dest: /usr/share/fonts/
   sudo: yes
 
-- shell: sudo fc-cache -vf
+- name: vim -- powerline -- update font cache
+  shell: sudo fc-cache -vf
   sudo: yes
 
-- get_url:
+- name: vim -- powerline -- download 10-powerline-symbols.conf
+  get_url:
     url: https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
     dest: /etc/fonts/conf.d/
   sudo: yes

@@ -1,8 +1,9 @@
 ---
-- shell: find {{ home }}/.mozilla/firefox -name *.default
+- name: 4k laptop display -- find firefox profile
+  shell: find {{ home }}/.mozilla/firefox -name *.default
   register: firefox_profile
 
-- name: 4k laptop display - firefox scaling
+- name: 4k laptop display -- firefox scaling
   file:
     src: "{{ files }}/firefox/user.js"
     dest: "{{ firefox_profile.stdout }}/user.js"

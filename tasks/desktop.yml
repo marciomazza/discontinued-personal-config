@@ -1,5 +1,5 @@
 ---
-- name: desktop - dconf customizations
+- name: desktop -- dconf customizations
   command: dconf write {{ item }}
   with_items:
   # disable show hud on Alt
@@ -23,14 +23,15 @@
 
   # TODO... general desktop scaling (set manually in Display > Scale for menu and title bars)
 
-  # brightness indicator
   # revert to this as soon as the package is available in wily:
   # - apt_repository: repo='ppa:indicator-brightness/ppa'
-- apt_repository: repo='deb http://ppa.launchpad.net/indicator-brightness/ppa/ubuntu vivid main'
+- name: desktop -- add brightness indicator apt repo
+  apt_repository: repo="{{ item }}"
+  with_items:
+  - deb http://ppa.launchpad.net/indicator-brightness/ppa/ubuntu vivid main
+  - deb-src http://ppa.launchpad.net/indicator-brightness/ppa/ubuntu vivid main
   sudo: yes
 
-- apt_repository: repo='deb-src http://ppa.launchpad.net/indicator-brightness/ppa/ubuntu vivid main'
-  sudo: yes
-
-- apt: name=indicator-brightness
+- name: desktop -- brightness indicator
+  apt: name=indicator-brightness
   sudo: yes
