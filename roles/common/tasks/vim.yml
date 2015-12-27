@@ -2,6 +2,11 @@
 # vim with python 3 support
 # based on http://www.xorpd.net/blog/vim_python3_install.html
 
+- name: vim - check if vim is absent
+  shell: vim --version | grep -q '+python3'
+  register: check_vim_absent
+  ignore_errors: True
+
 - apt:
     pkg: "{{ item }}"
   with_items:
@@ -16,13 +21,16 @@
     - ncurses-dev
     - exuberant-ctags
   sudo: yes
+  when: check_vim_absent.rc
 
 - git:
     repo: https://github.com/vim/vim.git
     dest: /tmp/vim
+  when: check_vim_absent.rc
 
 - shell: python3-config --configdir
   register: python3_config_dir
+  when: check_vim_absent.rc
 
 - shell: "./configure
           --enable-perlinterp
@@ -38,15 +46,18 @@
           --with-python3-config-dir={{  python3_config_dir.stdout }}"
   args:
     chdir: /tmp/vim
+  when: check_vim_absent.rc
 
 - shell: make
   args:
     chdir: /tmp/vim
+  when: check_vim_absent.rc
 
 - shell: make install
   args:
     chdir: /tmp/vim
   sudo: yes
+  when: check_vim_absent.rc
 
 # my personal vim configs
 
@@ -77,5 +88,3 @@
     url: https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
     dest: /etc/fonts/conf.d/
   sudo: yes
-
-
