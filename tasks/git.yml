@@ -26,7 +26,6 @@
   - alias.ci commit
   - alias.co checkout
   - alias.df 'diff --color-words'
-  - alias.stash 'stash -u'
   - user.name '{{ fullname }}'
   - user.email '{{ email }}'
   # explicitly adopt default push behaviour of git 2.0 and stop warning message
