@@ -11,6 +11,5 @@ cd ~
 git clone git@github.com:marciomazza/mazza-personal-config.git .z
 cd .z
 
-ansible-playbook setup.yml -i HOSTS --ask-sudo-pass
-source ~/.bashrc
+./update.sh
 exit 0
