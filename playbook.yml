@@ -19,6 +19,7 @@
     - include: tasks/desktop.yml
     - include: tasks/etckeeper.yml
     - include: tasks/git.yml
+    - include: tasks/node.yml
     - include: tasks/numix.yml
     - include: tasks/python.yml
     - include: tasks/spotify.yml

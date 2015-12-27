@@ -1,0 +1,18 @@
+- name: node -- check if node is absent
+  shell: dpkg -l nodejs
+  register: check_node_absent
+  ignore_errors: True
+
+- name: node -- pre install
+  shell: curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
+  when: check_node_absent.rc
+
+- name: node -- install
+  apt: name=nodejs
+  sudo: yes
+  when: check_node_absent.rc
+
+- npm: name=less global=yes
+  sudo: yes
+
+
