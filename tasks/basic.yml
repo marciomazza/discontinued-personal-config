@@ -29,6 +29,7 @@
 
     # dev tools
     - ruby-sass
+    - silversearcher-ag
 
     # desktop apps ###############################
     - vlc
