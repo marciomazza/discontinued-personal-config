@@ -26,6 +26,9 @@
     - wv
     - zlib1g-dev
     - xpdf # XXX isso é para o portal modelo???
+
+    # for psycopg
+    - libpq-dev
   sudo: yes
 
 - apt: name=python-ldap state=build-dep
