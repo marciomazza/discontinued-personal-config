@@ -19,8 +19,8 @@
   command: git config --global {{ item }}
   with_items:
   - color.ui true
-  - diff.tool meld
-  - merge.tool meld
+  - diff.tool vimdiff
+  - merge.tool vimdiff
   - core.excludesfile ~/.gitignore
   - alias.st status
   - alias.ci commit
