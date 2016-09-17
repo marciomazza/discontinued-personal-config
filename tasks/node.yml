@@ -1,16 +1,16 @@
 - name: node -- check if node is absent
-  shell: dpkg -l nodejs
-  register: check_node_absent
+  shell: node --version
+  register: check_node_present
   ignore_errors: True
 
 - name: node -- pre install
-  shell: curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
-  when: check_node_absent.rc
+  shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+  when: check_node_present|failed
 
 - name: node -- install
   apt: name=nodejs
   become: true
-  when: check_node_absent.rc
+  when: check_node_present|failed
 
 - name: node - custom packages
   npm: name="{{ item }}" global=yes
@@ -19,5 +19,4 @@
   - grunt
   - grunt-cli
   become: true
-
 
