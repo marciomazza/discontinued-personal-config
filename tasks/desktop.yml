@@ -30,8 +30,8 @@
   with_items:
   - deb http://ppa.launchpad.net/indicator-brightness/ppa/ubuntu vivid main
   - deb-src http://ppa.launchpad.net/indicator-brightness/ppa/ubuntu vivid main
-  sudo: yes
+  become: true
 
 - name: desktop -- brightness indicator
   apt: name=indicator-brightness
-  sudo: yes
+  become: true

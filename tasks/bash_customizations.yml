@@ -1,7 +1,7 @@
 ---
 - name: bash customizations -- deps
   pip: name=cdiff
-  sudo: yes
+  become: true
 
 - name: bash customizations -- force color prompt
   lineinfile:

@@ -7,7 +7,7 @@
     - gitk
     - git-svn
     - meld
-  sudo: yes
+  become: true
 
 - name: git -- link .gitignore
   file:

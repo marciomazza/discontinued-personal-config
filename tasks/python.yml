@@ -4,7 +4,7 @@
     - virtualenvwrapper
     - ipython
     - docutils
-  sudo: yes
+  become: true
 
 - apt:
     name: "{{ item }}"
@@ -34,10 +34,10 @@
     - graphviz
     - graphviz-dev
 
-  sudo: yes
+  become: true
 
 - apt: name=python-ldap state=build-dep
-  sudo: yes
+  become: true
 
 # IPython startup scripts
 - command: ipython profile create

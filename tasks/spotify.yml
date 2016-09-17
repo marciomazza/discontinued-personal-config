@@ -6,15 +6,15 @@
   with_items:
     - 94558F59
     - D2C19886
-  sudo: yes
+  become: true
 
 - name: spotify -- Add repository
   apt_repository: repo='deb http://repository.spotify.com stable non-free'
-  sudo: yes
+  become: true
 
 - name: spotify -- Install spotify
   apt: name=spotify-client
-  sudo: yes
+  become: true
 
 # FIX for ubuntu 15.10
 - name: spotify -- check if libgcrypt11 is installed
@@ -31,5 +31,5 @@
 
 - name: spotify -- install libgcrypt11
   apt: deb="/tmp/libgcrypt11_1.5.3-2ubuntu4.2_amd64.deb"
-  sudo: yes
+  become: true
   when: is_installed.stderr

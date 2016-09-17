@@ -9,7 +9,7 @@
 
 - name: node -- install
   apt: name=nodejs
-  sudo: yes
+  become: true
   when: check_node_absent.rc
 
 - name: node - custom packages
@@ -18,6 +18,6 @@
   - less
   - grunt
   - grunt-cli
-  sudo: yes
+  become: true
 
 

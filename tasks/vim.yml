@@ -21,7 +21,7 @@
     - libncurses5
     - ncurses-dev
     - exuberant-ctags
-  sudo: yes
+  become: true
   when: check_vim_absent.rc
 
 - name: vim -- clone repo
@@ -62,7 +62,7 @@
   shell: make install
   args:
     chdir: /tmp/vim
-  sudo: yes
+  become: true
   when: check_vim_absent.rc
 
 # my personal vim configs
@@ -81,7 +81,7 @@
 - name: vim -- install requirements
   pip:
     requirements: "{{ confdir }}/vimrc/requirements.txt"
-  sudo: yes
+  become: true
 
 # setup powerline fonts
 
@@ -94,17 +94,17 @@
   get_url:
     url: https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf
     dest: /usr/share/fonts/
-  sudo: yes
+  become: true
   when: check_powerline_absent.rc
 
 - name: vim -- powerline -- update font cache
   shell: sudo fc-cache -vf
-  sudo: yes
+  become: true
   when: check_powerline_absent.rc
 
 - name: vim -- powerline -- download 10-powerline-symbols.conf
   get_url:
     url: https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf
     dest: /etc/fonts/conf.d/
-  sudo: yes
+  become: true
   when: check_powerline_absent.rc

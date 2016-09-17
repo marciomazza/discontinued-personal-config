@@ -2,7 +2,7 @@
 - name: common programs
   apt:
     pkg: "{{ item }}"
-  sudo: yes
+  become: true
   with_items:
 
     # basic ######################################

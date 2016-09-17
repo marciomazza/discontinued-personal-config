@@ -1,10 +1,10 @@
 ---
 - apt_repository: repo='ppa:numix/ppa'
-  sudo: yes
+  become: true
 
 - apt:
     name: "{{ item  }}"
-  sudo: yes
+  become: true
   with_items:
     - numix-gtk-theme
     - numix-icon-theme-circle

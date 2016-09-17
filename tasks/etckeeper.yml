@@ -1,10 +1,10 @@
 - apt: name=etckeeper
-  sudo: yes
+  become: true
 
 - lineinfile: dest=/etc/etckeeper/etckeeper.conf regexp='^VCS=' line='VCS="git"'
-  sudo: yes
+  become: true
 
 - shell: etckeeper init && etckeeper commit "Init"
-  sudo: yes
+  become: true
   args:
     creates: /etc/.git
