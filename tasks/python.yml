@@ -29,6 +29,11 @@
 
     # for psycopg
     - libpq-dev
+
+    # more
+    - graphviz
+    - graphviz-dev
+
   sudo: yes
 
 - apt: name=python-ldap state=build-dep
