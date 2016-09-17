@@ -11,16 +11,26 @@
     files: "{{ confdir }}/files"
 
   tasks:
+
+    # basic
+    - include: tasks/git.yml
+    - include: tasks/etckeeper.yml
+    - include: tasks/basic.yml
+    - include: tasks/bash_customizations.yml
+
+    # interface
+    - include: tasks/desktop.yml
+    - include: tasks/numix.yml
     - include: tasks/4k.yml
       when: ansible_product_version == "Lenovo Yoga 2 Pro"
-    - include: tasks/bash_customizations.yml
-    - include: tasks/basic.yml
+
+    # more apps
     - include: tasks/chrome.yml
-    - include: tasks/desktop.yml
-    - include: tasks/etckeeper.yml
-    - include: tasks/git.yml
-    - include: tasks/node.yml
-    - include: tasks/numix.yml
-    - include: tasks/python.yml
     - include: tasks/spotify.yml
+
+    # dev
+    - include: tasks/python.yml
+    - include: tasks/node.yml
     - include: tasks/vim.yml
+
+
