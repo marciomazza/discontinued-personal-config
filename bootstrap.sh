@@ -1,5 +1,7 @@
-sudo apt-get install xclip git python-pip
-sudo pip install ansible
+sudo apt-get -y install software-properties-common
+sudo apt-add-repository -y ppa:ansible/ansible
+sudo apt-get -y update
+sudo apt-get -y install xclip git ansible
 
 ssh-keygen -t rsa -b 4096 -C "marciomazza@gmail.com"
 xclip -sel clip < ~/.ssh/id_rsa.pub
