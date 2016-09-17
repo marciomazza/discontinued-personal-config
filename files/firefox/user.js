@@ -2,5 +2,5 @@
  *
  * Esta configuracao eh para um monitor 4k pequeno (laptop lenovo)
  */
-user_pref("layout.css.devPixelsPerPx", "2.25");
+user_pref("layout.css.devPixelsPerPx", "1.5");
 
