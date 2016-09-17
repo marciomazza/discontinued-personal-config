@@ -65,7 +65,7 @@
   become: true
   when: check_vim_absent.rc
 
-# my personal vim configs
+######## my personal vim configs ########
 
 - name: vim -- clone my personal vim configs
   git:
@@ -108,3 +108,16 @@
     dest: /etc/fonts/conf.d/
   become: true
   when: check_powerline_absent.rc
+
+# install Plug and all plugins
+
+- name: vim - create autoload dir
+  file: path="{{ home }}/.vim/autoload" state=directory
+
+- name: vim - Download Plug
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: "{{ home }}/.vim/autoload/plug.vim"
+
+- name: vim - Install all plugins
+  command: vim +PlugInstall +qall
