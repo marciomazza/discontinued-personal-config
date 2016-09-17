@@ -36,7 +36,11 @@
 
   become: true
 
-- apt: name=python-ldap state=build-dep
+# previously used
+#    apt: name=python-ldap state=build-dep
+#  but that stopped working on 16.04 (xenial)
+#  I think that's no longer necessary... but should keep an eye on it
+- apt: name=python-ldap
   become: true
 
 # IPython startup scripts
