@@ -120,4 +120,6 @@
     dest: "{{ home }}/.vim/autoload/plug.vim"
 
 - name: vim - Install all plugins
-  command: vim +PlugInstall +qall
+  shell: vim -c ":PlugInstall" -c qa
+  no_log: true
+
