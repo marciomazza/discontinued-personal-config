@@ -20,10 +20,12 @@
   - /com/canonical/unity/lenses/remote-content-search "'none'"
   # show date on clock widget
   - /com/canonical/indicator/datetime/show-date "true"
+  # laucher favorites
+  - /com/canonical/unity/launcher/favorites "['application://firefox.desktop', 'application://org.gnome.Nautilus.desktop', 'application://google-chrome.desktop', 'unity://running-apps', 'unity://expo-icon', 'unity://devices']"
 
   # TODO... general desktop scaling (set manually in Display > Scale for menu and title bars)
 
-- name: desktop -- get ubuntu release codename 
+- name: desktop -- get ubuntu release codename
   shell: lsb_release -cs
   register: ubuntu_codename
 
