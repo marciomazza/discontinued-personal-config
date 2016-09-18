@@ -1,4 +1,5 @@
 ---
+#### firefox ####
 - name: 4k laptop display -- find firefox profile
   shell: find {{ home }}/.mozilla/firefox -name *.default
   register: firefox_profile
@@ -9,4 +10,16 @@
     dest: "{{ firefox_profile.stdout }}/user.js"
     state: link
 
+#### screen resolution and scaling ####
+- name: 4k laptop display -- dconf customizations
+  command: dconf write {{ item }}
+  with_items:
+  - /org/compiz/profiles/unity/plugins/core/outputs "['1920x1080+0+0']"
+  - /org/compiz/profiles/unity/plugins/expo/x-offset 96
+  - /org/gnome/desktop/interface/cursor-size 36
+  - /org/gnome/desktop/interface/scaling-factor "uint32 1"
+  - /com/ubuntu/user-interface/scale-factor '"{\'eDP1\': 12}"'
+  - /org/compiz/profiles/unity/plugins/unityshell/num-launchers 0
+  # for some odd reason using 2 here has the effect of setting 1.5 actually (what we intended)
+  - /org/gnome/desktop/interface/text-scaling-factor 2
 
