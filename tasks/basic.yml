@@ -6,6 +6,8 @@
   with_items:
 
     # basic ######################################
+    - python-pip
+    - python3-pip
     - tree
     - trash-cli
     - xclip
