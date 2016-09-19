@@ -43,3 +43,10 @@
     - anki
     - audacity
     - mplayer
+    - redshift
+
+- file:
+    src: "{{ confdir }}/files/redshift.conf"
+    dest: "{{ home }}/.config/redshift.conf"
+    state: link
+    force: yes
