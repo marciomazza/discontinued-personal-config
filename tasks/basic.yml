@@ -1,5 +1,5 @@
 ---
-- name: common programs
+- name: basic - common programs
   apt:
     pkg: "{{ item }}"
   become: true
@@ -45,8 +45,21 @@
     - mplayer
     - redshift
 
-- file:
-    src: "{{ confdir }}/files/redshift.conf"
-    dest: "{{ home }}/.config/redshift.conf"
+    # p/ o banco do brasil ########################
+    - openjdk-8-jre
+    - icedtea-8-plugin
+
+- name: basic - enumerate .config files
+  find: path="{{ confdir }}/files/config"
+  register: config_files
+
+- name: basic - link .config files
+  file:
+    src: "{{ item.path }}"
+    dest: "{{ home }}/.config/{{ item.path | basename }}"
     state: link
     force: yes
+  with_items: config_files.files
+
+
+
