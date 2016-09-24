@@ -22,6 +22,8 @@
   - /com/canonical/indicator/datetime/show-date "true"
   # laucher favorites
   - /com/canonical/unity/launcher/favorites "['application://firefox.desktop', 'application://org.gnome.Nautilus.desktop', 'application://google-chrome.desktop', 'unity://running-apps', 'unity://expo-icon', 'unity://devices']"
+  # use list view by default in nautilus
+  - /org/gnome/nautilus/preferences/default-folder-viewer "'list-view'"
 
 - name: desktop -- get ubuntu release codename
   shell: lsb_release -cs
