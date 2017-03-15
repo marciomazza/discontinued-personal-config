@@ -61,5 +61,12 @@
     force: yes
   with_items: config_files.files
 
-
+- name: basic - general configuration files at home
+  file:
+    src: "{{ files }}/{{ item }}"
+    dest: "{{ home }}/{{ item }}"
+    state: link
+    force: yes
+  with_items:
+    - .agignore
 
