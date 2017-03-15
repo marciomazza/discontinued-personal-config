@@ -18,10 +18,9 @@
   - /org/compiz/profiles/unity/plugins/expo/x-offset 96
   - /org/gnome/desktop/interface/cursor-size 36
   - /org/gnome/desktop/interface/scaling-factor "uint32 1"
-  - /com/ubuntu/user-interface/scale-factor '"{\'eDP1\': 12}"'
+  - "/com/ubuntu/user-interface/scale-factor \"{'HDMI1': 8, 'eDP1': 12}\""
   - /org/compiz/profiles/unity/plugins/unityshell/num-launchers 0
-  # for some odd reason using 2 here has the effect of setting 1.5 actually (what we intended)
-  - /org/gnome/desktop/interface/text-scaling-factor 2
+  - /org/gnome/desktop/interface/text-scaling-factor 1.5
 
 - name: 4k laptop display -- terminator
   file:
