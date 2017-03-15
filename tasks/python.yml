@@ -50,7 +50,9 @@
     src: "{{ files }}/ipython/{{ item | basename }}"
     dest: "{{ home }}/.ipython/{{ item }}"
     state: link
+    force: yes
   with_items:
+    - profile_default/ipython_config.py
     - profile_default/startup/virtualenv-for-ipython.py
     - profile_zope2/startup/ipy_profile_zope.py
 
