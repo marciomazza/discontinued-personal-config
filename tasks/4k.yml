@@ -22,7 +22,12 @@
   - /org/compiz/profiles/unity/plugins/unityshell/num-launchers 0
   - /org/gnome/desktop/interface/text-scaling-factor 1.5
 
-- name: 4k laptop display -- terminator
+- name: 4k laptop display -- terminator - ensure config dir exists
+  file:
+    path: "{{ home }}/.config/terminator"
+    state: directory
+
+- name: 4k laptop display -- terminator - link config
   file:
     src: "{{ confdir }}/files/4k_terminator_config"
     dest: "{{ home }}/.config/terminator/config"
