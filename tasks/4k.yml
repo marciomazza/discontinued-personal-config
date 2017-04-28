@@ -15,7 +15,8 @@
   command: dconf write {{ item }}
   with_items:
   - /org/compiz/profiles/unity/plugins/core/outputs "['1920x1080+0+0']"
-  - /org/compiz/profiles/unity/plugins/expo/x-offset 96
+  - /org/compiz/profiles/unity/plugins/expo/x-offset 110
+  - /org/compiz/profiles/unity/plugins/scale/x-offset 110
   - /org/gnome/desktop/interface/cursor-size 33
   - /org/gnome/desktop/interface/scaling-factor "uint32 1"
   - "/com/ubuntu/user-interface/scale-factor \"{'HDMI1': 8, 'eDP1': 11}\""
