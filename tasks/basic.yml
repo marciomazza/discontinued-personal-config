@@ -44,6 +44,7 @@
     - audacity
     - mplayer
     - redshift
+    - redshift-gtk
 
     # p/ o banco do brasil ########################
     - openjdk-8-jre
