@@ -16,11 +16,11 @@
   with_items:
   - /org/compiz/profiles/unity/plugins/core/outputs "['1920x1080+0+0']"
   - /org/compiz/profiles/unity/plugins/expo/x-offset 96
-  - /org/gnome/desktop/interface/cursor-size 36
+  - /org/gnome/desktop/interface/cursor-size 33
   - /org/gnome/desktop/interface/scaling-factor "uint32 1"
-  - "/com/ubuntu/user-interface/scale-factor \"{'HDMI1': 8, 'eDP1': 12}\""
+  - "/com/ubuntu/user-interface/scale-factor \"{'HDMI1': 8, 'eDP1': 11}\""
   - /org/compiz/profiles/unity/plugins/unityshell/num-launchers 0
-  - /org/gnome/desktop/interface/text-scaling-factor 1.5
+  - /org/gnome/desktop/interface/text-scaling-factor 1.375
 
 - name: 4k laptop display -- terminator - ensure config dir exists
   file:
