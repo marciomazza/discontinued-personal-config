@@ -59,7 +59,7 @@
     dest: "{{ home }}/.config/{{ item.path | basename }}"
     state: link
     force: yes
-  with_items: config_files.files
+  with_items: "{{ config_files.files }}"
 
 - name: basic - general configuration files at home
   file:
