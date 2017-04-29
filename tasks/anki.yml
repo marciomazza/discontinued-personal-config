@@ -1,0 +1,68 @@
+---
+
+- name: anki -- check if anki is absent
+  shell: anki --version
+  register: check_anki_absent
+  ignore_errors: True
+
+- set_fact:
+    anki_url: https://apps.ankiweb.net/downloads/current/anki-2.0.45-amd64.tar.bz2
+
+- name: anki -- download
+  get_url:
+    url: "{{ anki_url }}"
+    dest: /tmp
+  become: true
+  when: check_anki_absent.rc
+
+- name: anki -- extract
+  unarchive:
+    src: "/tmp/{{ anki_url | basename }}"
+    dest: /tmp
+    remote_src: yes
+  when: check_anki_absent.rc
+
+# replace the 2 previuos steps with this when it eventually works
+# - name: anki -- download and extract
+#   unarchive:
+#     src: https://apps.ankiweb.net/downloads/current/anki-2.0.45-amd64.tar.bz2
+#     dest: /tmp
+#     remote_src: yes
+#   when: check_anki_absent.rc
+
+- name: anki -- get name of extracted dir
+  shell: ls -d /tmp/anki-2*/ | sed 's,/$,,'
+  register: anki_dir
+  ignore_errors: True
+  when: check_anki_absent.rc
+
+- name: anki -- make install
+  shell: make install
+  args:
+    chdir: "{{ anki_dir.stdout }}"
+  become: true
+  when: check_anki_absent.rc
+
+# Fix theme issue
+# see https://anki.tenderapp.com/kb/problems/anki-not-picking-up-gtk-theme-on-gnomelinux
+
+- name: anki -- fix theme issue step 1
+  shell: gsettings get org.gnome.desktop.interface gtk-theme
+  register: gtk_theme
+  ignore_errors: True
+  when: check_anki_absent.rc
+
+- name: anki -- fix theme issue step 2
+  lineinfile:
+    dest: ~/.gtkrc-2.0
+    regexp: '^gtk-theme-name='
+    line: "gtk-theme-name={{ gtk_theme.stdout }}"
+    create: yes
+  when: check_anki_absent.rc
+
+- name: anki -- fix theme issue step 3
+  lineinfile:
+    dest: ~/.profile
+    line: "export GTK2_RC_FILES={{ home }}/.gtkrc-2.0"
+    create: yes
+  when: check_anki_absent.rc

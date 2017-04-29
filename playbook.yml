@@ -27,6 +27,7 @@
     # more apps
     - include: tasks/chrome.yml
     - include: tasks/spotify.yml
+    - include: tasks/anki.yml
 
     # dev
     - include: tasks/python.yml
