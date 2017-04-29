@@ -3,6 +3,7 @@
   with_items:
     - virtualenvwrapper
     - ipython
+    - ipdb
     - docutils
   become: true
 
