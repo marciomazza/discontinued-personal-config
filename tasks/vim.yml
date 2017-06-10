@@ -1,18 +1,20 @@
 ---
-# vim with python 3 support
-# based on http://www.xorpd.net/blog/vim_python3_install.html
+# install plain vim-gnome (with python 3)
+# and compile vim with python 2 support with exec name "vim2"
 
-- name: vim -- check if vim is absent
-  shell: vim --version | grep -q '+python3'
+# (compilation based on http://www.xorpd.net/blog/vim_python3_install.html)
+
+- name: vim -- check if vim2 is absent
+  shell: vim2 --version
   register: check_vim_absent
   ignore_errors: True
 
-- name: vim -- deps
+- name: vim -- vim-gnome (python 3) and vim2 deps (python 2)
   apt:
     pkg: "{{ item }}"
   with_items:
+    - vim-gnome
     - python-dev
-    - python3-dev
     - ruby
     - ruby-dev
     - libx11-dev
@@ -22,23 +24,22 @@
     - ncurses-dev
     - exuberant-ctags
   become: true
-  when: check_vim_absent.rc
 
-- name: vim -- clone repo
+- name: vim -- clone repo (for python 2 vim)
   git:
     repo: https://github.com/vim/vim.git
     dest: /tmp/vim
   when: check_vim_absent.rc
 
-- name: vim -- grab python3 config dir
-  shell: python3-config --configdir
-  register: python3_config_dir
+- name: vim -- grab python 2 config dir
+  shell: python2-config --configdir
+  register: python2_config_dir
   when: check_vim_absent.rc
 
-- name: vim -- configure
+- name: vim -- configure (for python 2 vim)
   shell: "./configure
           --enable-perlinterp
-          --enable-python3interp
+          --enable-pythoninterp
           --enable-rubyinterp
           --enable-cscope
           --enable-gui=auto
@@ -47,18 +48,21 @@
           --with-features=huge
           --enable-multibyte
           --with-x
-          --with-python3-config-dir={{  python3_config_dir.stdout }}"
+          --with-vim-name=vim2
+          --with-ex-name=ex2
+          --with-view-name=view2
+          --with-python-config-dir={{ python2_config_dir.stdout }}"
   args:
     chdir: /tmp/vim
   when: check_vim_absent.rc
 
-- name: vim -- make
+- name: vim -- make (for python 2 vim)
   shell: make
   args:
     chdir: /tmp/vim
   when: check_vim_absent.rc
 
-- name: vim -- make install
+- name: vim -- make install (for python 2 vim)
   shell: make install
   args:
     chdir: /tmp/vim
