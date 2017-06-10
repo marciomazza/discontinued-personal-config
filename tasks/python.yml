@@ -67,3 +67,14 @@
 # To debug nicely with sauna.reload
 # https://github.com/collective/sauna.reload#debugging-with-saunareload
 - file: src="{{ files }}/.pdbrc" dest="{{ home }}/.pdbrc" state=link
+
+# virtualenvwrapper automatic actions
+- file:
+    src: "{{ files }}/virtualenvs/{{ item }}"
+    dest: "{{ home }}/.virtualenvs/{{ item }}"
+    state: link
+    force: yes
+  with_items:
+    - postactivate
+    - postdeactivate
+    - postmkvirtualenv
