@@ -82,8 +82,15 @@
     dest: "{{ home }}/.vimrc"
     state: link
 
-- name: vim -- install requirements
+- name: vim -- install requirements for python 2
   pip:
+    executable: pip2
+    requirements: "{{ confdir }}/vimrc/requirements.txt"
+  become: true
+
+- name: vim -- install requirements for python 3
+  pip:
+    executable: pip3
     requirements: "{{ confdir }}/vimrc/requirements.txt"
   become: true
 
