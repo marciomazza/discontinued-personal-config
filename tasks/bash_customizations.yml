@@ -9,6 +9,18 @@
     regexp: "force_color_prompt="
     line: "force_color_prompt=yes"
 
+- name: bash customizations -- infinite history size
+  lineinfile:
+    dest: "{{ home }}/.bashrc"
+    regexp: "HISTSIZE="
+    line: "HISTSIZE=-1"
+
+- name: bash customizations -- infinite history file size
+  lineinfile:
+    dest: "{{ home }}/.bashrc"
+    regexp: "HISTFILESIZE="
+    line: "HISTFILESIZE=-1"
+
 - name: bash customizations -- download django bash completion
   get_url:
     url: https://raw.githubusercontent.com/django/django/master/extras/django_bash_completion

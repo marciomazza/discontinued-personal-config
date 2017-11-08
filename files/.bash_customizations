@@ -200,9 +200,6 @@ PS1="$YELLOW\$(ps1_base)$NO_COLOUR\$(ps1_sharp) "
 #     AMBIENTE     #
 ####################
 
-export HISTFILESIZE=1000000000
-export HISTSIZE=1000000
-
 # HTML TIDY
 HTML_TIDY=~/.z/tidy.conf
 export HTML_TIDY
