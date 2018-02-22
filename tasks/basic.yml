@@ -73,3 +73,12 @@
   with_items:
     - .agignore
 
+- name: basic - turn off wi-fi when on wired network connection
+  file:
+    src: "{{ files }}/99-wlan"
+    dest: "/etc/NetworkManager/dispatcher.d/99-wlan"
+    state: link
+    force: yes
+    owner: root
+  become: true
+
