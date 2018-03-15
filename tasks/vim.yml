@@ -71,6 +71,11 @@
 
 ######## my personal vim configs ########
 
+- name: vim -- directory for personal configs
+  file:
+    path: "{{ confdir }}/vimrc"
+    state: directory
+
 - name: vim -- clone my personal vim configs
   git:
     repo: git@github.com:marciomazza/vimrc.git
