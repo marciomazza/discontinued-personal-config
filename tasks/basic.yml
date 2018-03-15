@@ -28,29 +28,11 @@
     - mysql-server
     - mysql-client
     - libmysqlclient-dev # to be able to pip install MySQL-python
-    - mysql-workbench
     - postgresql
-    - pgadmin3
 
     # dev tools
     - ruby-sass
     - silversearcher-ag
-
-    # desktop apps ###############################
-    - vlc
-    - gimp
-    - imagemagick
-    - chromium-browser
-    - unity-tweak-tool
-    - gnome-tweak-tool
-    - audacity
-    - mplayer
-    - redshift
-    - redshift-gtk
-
-    # p/ o banco do brasil ########################
-    - openjdk-8-jre
-    - icedtea-8-plugin
 
 - name: basic - enumerate .config files
   find: path="{{ confdir }}/files/config"
@@ -72,13 +54,4 @@
     force: yes
   with_items:
     - .agignore
-
-- name: basic - turn off wi-fi when on wired network connection
-  file:
-    src: "{{ files }}/99-wlan"
-    dest: "/etc/NetworkManager/dispatcher.d/99-wlan"
-    state: link
-    force: yes
-    owner: root
-  become: true
 

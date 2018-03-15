@@ -18,16 +18,17 @@
     - include: tasks/basic.yml
     - include: tasks/bash_customizations.yml
 
-    # interface
-    - include: tasks/desktop.yml
-    - include: tasks/numix.yml
-    - include: tasks/4k.yml
-      when: ansible_product_version == "Lenovo Yoga 2 Pro"
-
-    # more apps
-    - include: tasks/chrome.yml
-    - include: tasks/spotify.yml
-    - include: tasks/anki.yml
+    # GUI
+    - block:
+        # desktop basics
+        - include: tasks/desktop.yml
+        - include: tasks/numix.yml
+        - include: tasks/4k.yml
+        # more apps
+        - include: tasks/chrome.yml
+        - include: tasks/spotify.yml
+        - include: tasks/anki.yml
+      when: '"XDG_CURRENT_DESKTOP" in ansible_env'
 
     # dev
     - include: tasks/python.yml
