@@ -20,7 +20,6 @@
     # dev ########################################
     # version control
     - git
-    - gitk
     - subversion
     - mercurial
 

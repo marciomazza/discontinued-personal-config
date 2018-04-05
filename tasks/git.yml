@@ -4,7 +4,7 @@
     pkg: "{{ item }}"
   with_items:
     - git
-    - gitk
+    - gitg
     - git-svn
     - meld
   become: true
