@@ -1,10 +1,18 @@
 - pip:
     name: "{{ item }}"
+    state: latest
   with_items:
-    - virtualenvwrapper
-    - ipython
-    - ipdb
     - docutils
+    - virtualenvwrapper
+  become: true
+
+- pip:
+    name: "{{ item }}"
+    state: latest
+    executable: pip3
+  with_items:
+    - docutils
+    - ipython
   become: true
 
 - apt:
