@@ -5,12 +5,12 @@
 
 - name: node -- pre install
   shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-  when: check_node_present|failed
+  when: check_node_present is failed
 
 - name: node -- install
   apt: name=nodejs
   become: true
-  when: check_node_present|failed
+  when: check_node_present is failed
 
 - name: node - custom packages
   npm: name="{{ item }}" global=yes
