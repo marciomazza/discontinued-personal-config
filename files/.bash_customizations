@@ -187,7 +187,7 @@ BLUE="\[\033[0;34m\]"
 CYAN="\[\033[0;36m\]"
 NO_COLOUR="\[\033[0m\]"
 
-PS1="$YELLOW\$(ps1_base)$NO_COLOUR\$(ps1_sharp) "
+PS1="$CYAN\h:$YELLOW\$(ps1_base)$NO_COLOUR\$(ps1_sharp) "
 
 # function parse_git_branch () {
 #     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
