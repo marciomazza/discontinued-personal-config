@@ -32,7 +32,6 @@
 
     # dev
     - include: tasks/python.yml
-    - include: tasks/node.yml
     - include: tasks/vim.yml
 
 
