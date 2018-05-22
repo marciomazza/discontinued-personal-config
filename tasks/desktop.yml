@@ -13,8 +13,6 @@
     - gnome-tweak-tool
     - audacity
     - mplayer
-    - redshift
-    - redshift-gtk
 
     # for banco do brasil
     - openjdk-8-jre
