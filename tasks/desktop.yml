@@ -61,17 +61,3 @@
   # use list view by default in nautilus
   - /org/gnome/nautilus/preferences/default-folder-viewer "'list-view'"
 
-- name: desktop -- get ubuntu release codename
-  shell: lsb_release -cs
-  register: ubuntu_codename
-
-- name: desktop -- add brightness indicator apt repo
-  apt_repository: repo="{{ item }}"
-  with_items:
-  - "deb http://ppa.launchpad.net/indicator-brightness/ppa/ubuntu {{ ubuntu_codename.stdout }} main"
-  - "deb-src http://ppa.launchpad.net/indicator-brightness/ppa/ubuntu {{ ubuntu_codename.stdout }} main"
-  become: true
-
-- name: desktop -- brightness indicator
-  apt: name=indicator-brightness allow_unauthenticated=yes
-  become: true
