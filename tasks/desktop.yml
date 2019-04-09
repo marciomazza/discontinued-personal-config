@@ -56,4 +56,6 @@
   - /com/canonical/unity/launcher/favorites "['application://firefox.desktop', 'application://org.gnome.Nautilus.desktop', 'application://google-chrome.desktop', 'unity://running-apps', 'unity://expo-icon', 'unity://devices']"
   # use list view by default in nautilus
   - /org/gnome/nautilus/preferences/default-folder-viewer "'list-view'"
+  # auto hide the dock
+  - /org/gnome/shell/extensions/dash-to-dock/dock-fixed "false"
 
