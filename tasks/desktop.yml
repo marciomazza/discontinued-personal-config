@@ -38,8 +38,11 @@
   # disable show hud on Alt
   - /org/compiz/integrated/show-hud '[""]'
   # workspaces 2x2
-  - /org/compiz/profiles/unity/plugins/core/hsize 2
-  - /org/compiz/profiles/unity/plugins/core/vsize 2
+  # TODO ... install here (now it's still manual)
+  # ---->>>> https://extensions.gnome.org/extension/484/workspace-grid/
+  - /org/gnome/desktop/wm/preferences/num-workspaces 4
+  - /org/gnome/shell/extensions/workspace-grid/num-columns 2
+  - /org/gnome/shell/extensions/workspace-grid/show-workspace-labels "false"
   # Caps => another Ctrl, 2 shifts => caps on, one shift => caps off, right alt is compose (mainly to write ß)
   - /org/gnome/desktop/input-sources/xkb-options "['caps:ctrl_modifier', 'shift:both_capslock_cancel', 'compose:ralt']"
   # auto hide launcher
