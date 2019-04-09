@@ -1,39 +1,37 @@
 ---
 - name: basic - common programs
   apt:
-    pkg: "{{ item }}"
+    pkg:
+      # basic ######################################
+      - python-pip
+      - python3-pip
+      - tree
+      - trash-cli
+      - xclip
+      - curl
+      - terminator
+      - smbclient
+
+      # infra ######################################
+      - htop
+
+      # dev ########################################
+      # version control
+      - git
+      - subversion
+      - mercurial
+
+      # databases
+      - mysql-server
+      - mysql-client
+      - libmysqlclient-dev # to be able to pip install MySQL-python
+      - postgresql
+
+      # dev tools
+      - nodejs
+      - ruby-sass
+      - silversearcher-ag
   become: true
-  with_items:
-
-    # basic ######################################
-    - python-pip
-    - python3-pip
-    - tree
-    - trash-cli
-    - xclip
-    - curl
-    - terminator
-    - smbclient
-
-    # infra ######################################
-    - htop
-
-    # dev ########################################
-    # version control
-    - git
-    - subversion
-    - mercurial
-
-    # databases
-    - mysql-server
-    - mysql-client
-    - libmysqlclient-dev # to be able to pip install MySQL-python
-    - postgresql
-
-    # dev tools
-    - nodejs
-    - ruby-sass
-    - silversearcher-ag
 
 - name: basic - enumerate .config files
   find: path="{{ confdir }}/files/config"

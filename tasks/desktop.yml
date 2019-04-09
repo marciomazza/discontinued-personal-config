@@ -1,26 +1,24 @@
 ---
 - name: desktop - common programs
   apt:
-    pkg: "{{ item }}"
+    pkg:
+      # general desktop apps
+      - vlc
+      - gimp
+      - imagemagick
+      - unity-tweak-tool
+      - gnome-tweak-tool
+      - audacity
+      - mplayer
+
+      # for banco do brasil
+      - openjdk-8-jre
+      - icedtea-8-plugin
+
+      # database visual clients
+      - mysql-workbench
+      - pgadmin3
   become: true
-  with_items:
-
-    # general desktop apps
-    - vlc
-    - gimp
-    - imagemagick
-    - unity-tweak-tool
-    - gnome-tweak-tool
-    - audacity
-    - mplayer
-
-    # for banco do brasil
-    - openjdk-8-jre
-    - icedtea-8-plugin
-
-    # database visual clients
-    - mysql-workbench
-    - pgadmin3
 
 
 - name: desktop - turn off wi-fi when on wired network connection

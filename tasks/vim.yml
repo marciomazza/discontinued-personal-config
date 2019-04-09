@@ -11,18 +11,17 @@
 
 - name: vim -- vim-gnome (python 3) and vim2 deps (python 2)
   apt:
-    pkg: "{{ item }}"
-  with_items:
-    - vim-gnome
-    - python-dev
-    - ruby
-    - ruby-dev
-    - libx11-dev
-    - libxt-dev
-    - libgtk2.0-dev
-    - libncurses5
-    - ncurses-dev
-    - exuberant-ctags
+    pkg:
+      - vim-gnome
+      - python-dev
+      - ruby
+      - ruby-dev
+      - libx11-dev
+      - libxt-dev
+      - libgtk2.0-dev
+      - libncurses5
+      - ncurses-dev
+      - exuberant-ctags
   become: true
 
 - name: vim -- clone repo (for python 2 vim)

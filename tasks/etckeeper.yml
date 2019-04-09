@@ -5,6 +5,6 @@
   become: true
 
 - shell: etckeeper init && etckeeper commit "Init"
-  become: true
   args:
     creates: /etc/.git
+  become: true

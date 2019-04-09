@@ -1,49 +1,47 @@
 - pip:
-    name: "{{ item }}"
+    name:
+      - docutils
+      - virtualenvwrapper
     state: latest
-  with_items:
-    - docutils
-    - virtualenvwrapper
   become: true
 
 - pip:
-    name: "{{ item }}"
+    name:
+      - docutils
+      - ipython
     state: latest
     executable: pip3
-  with_items:
-    - docutils
-    - ipython
   become: true
 
 - apt:
-    name: "{{ item }}"
-  with_items:
-    # to enable copy and paste in IPython
-    - python-tk
+    name:
+      # to enable copy and paste in IPython
+      - python-tk
 
-    # for Plone 4
-    # http://plone.org/documentation/manual/installing-plone/installing-on-linux-unix-bsd/debian-libraries
-    - build-essential
-    - libbz2-dev
-    - libjpeg62-dev
-    - libreadline-gplv2-dev
-    - libssl-dev
-    - libxml2-dev
-    - libxslt1-dev
-    - poppler-utils
-    - python-dev
-    - wv
-    - zlib1g-dev
-    - xpdf # XXX isso é para o portal modelo???
+      # for Plone 4
+      # http://plone.org/documentation/manual/installing-plone/installing-on-linux-unix-bsd/debian-libraries
+      - build-essential
+      - libbz2-dev
+      - libjpeg62-dev
+      - libreadline-gplv2-dev
+      - libssl-dev
+      - libxml2-dev
+      - libxslt1-dev
+      - poppler-utils
+      - python-dev
+      - wv
+      - zlib1g-dev
+      - xpdf # XXX isso é para o portal modelo???
 
-    # for psycopg
-    - libpq-dev
+      # for psycopg
+      - libpq-dev
 
-    # more
-    - graphviz
-    - graphviz-dev
+      # more
+      - graphviz
+      - graphviz-dev
 
   become: true
+
 
 # previously used
 #    apt: name=python-ldap state=build-dep

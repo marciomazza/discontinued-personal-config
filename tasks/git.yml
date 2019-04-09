@@ -1,13 +1,12 @@
 ---
 - name: git -- deps
   apt:
-    pkg: "{{ item }}"
-  with_items:
-    - git
-    - gitg
-    - git-svn
-    - meld
-    - git-annex
+    pkg:
+      - git
+      - gitg
+      - git-svn
+      - meld
+      - git-annex
   become: true
 
 - name: git -- link .gitignore
