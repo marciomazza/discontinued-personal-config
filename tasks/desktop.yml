@@ -8,6 +8,7 @@
       - imagemagick
       - unity-tweak-tool
       - gnome-tweak-tool
+      - dconf-tools
       - audacity
       - mplayer
       - gnome-shell-pomodoro
