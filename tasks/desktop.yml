@@ -59,7 +59,8 @@
   - /org/gnome/nautilus/preferences/default-folder-viewer "'list-view'"
   # auto hide the dock
   - /org/gnome/shell/extensions/dash-to-dock/dock-fixed "false"
-
   # sounds and dark theme for gnome-shell-pomodoro
   - /org/gnome/pomodoro/preferences/enabled-plugins "['sounds', 'dark-theme']"
+  # automatic timezone detection
+  - /org/gnome/desktop/datetime/automatic-timezone "true"
 
