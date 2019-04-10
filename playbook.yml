@@ -17,6 +17,7 @@
     - include: tasks/etckeeper.yml
     - include: tasks/basic.yml
     - include: tasks/bash_customizations.yml
+    - include: tasks/docker.yml
 
     # GUI
     - block:
