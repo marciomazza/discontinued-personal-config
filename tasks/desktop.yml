@@ -12,6 +12,7 @@
       - audacity
       - mplayer
       - gnome-shell-pomodoro
+      - byobu
 
       # for banco do brasil
       - openjdk-8-jre
