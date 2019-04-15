@@ -13,6 +13,12 @@
     executable: pip3
   become: true
 
+
+# TODO temporary ... REMOVE when python 3.7 is part of os distribution
+- name: python - temp enable python 3.7
+  apt_repository: repo='ppa:deadsnakes/ppa'
+  become: true
+
 - apt:
     name:
       # to enable copy and paste in IPython
@@ -39,6 +45,10 @@
       # more
       - graphviz
       - graphviz-dev
+
+      # TODO temporary ... REMOVE when python 3.7 is part of os distribution
+      - python3.7
+      - python3.7-dev
 
   become: true
 
