@@ -1,0 +1,31 @@
+---
+
+- name: cedilla -- cedille in english layout
+  lineinfile:
+    path: /usr/lib/x86_64-linux-gnu/gtk-3.0/3.0.0/immodules.cache
+    regexp: '"cedilla" "Cedilla" "gtk30"'
+    line: '"cedilla" "Cedilla" "gtk30" "/usr/share/locale" "az:ca:co:fr:gv:oc:pt:sq:tr:wa:en"'
+  become: true
+
+- name: cedilla -- replace ç
+  replace:
+    path: /usr/share/X11/locale/en_US.UTF-8/Compose
+    regexp: ć
+    replace: ç
+  become: true
+
+- name: cedilla -- replace Ç
+  replace:
+    path: /usr/share/X11/locale/en_US.UTF-8/Compose
+    regexp: Ć
+    replace: Ç
+  become: true
+
+- name: cedilla -- /etc/environment
+  lineinfile:
+    path: /etc/environment
+    line: "{{ item }}"
+  with_items:
+      - "GTK_IM_MODULE=cedilla"
+      - "QT_IM_MODULE=cedilla"
+  become: true

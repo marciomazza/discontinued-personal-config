@@ -16,6 +16,7 @@
     - include: tasks/git.yml
     - include: tasks/etckeeper.yml
     - include: tasks/basic.yml
+    - include: tasks/cedilla.yml
     - include: tasks/bash_customizations.yml
     - include: tasks/docker.yml
 
@@ -34,5 +35,3 @@
     # dev
     - include: tasks/python.yml
     - include: tasks/vim.yml
-
-
