@@ -23,6 +23,7 @@
     name:
       # to enable copy and paste in IPython
       - python-tk
+      - python3-tk
 
       # for Plone 4
       # http://plone.org/documentation/manual/installing-plone/installing-on-linux-unix-bsd/debian-libraries
