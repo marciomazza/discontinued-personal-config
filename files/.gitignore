@@ -57,3 +57,4 @@ htmlcov
 zdev.cfg
 zzz*
 *.orig
+geckodriver.log
