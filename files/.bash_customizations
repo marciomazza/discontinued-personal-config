@@ -19,6 +19,11 @@ alias svnorigem='git log -n 1 | grep svn-id | sed -e "s#git-svn-id: \([^@]\+\)@.
 alias unwhite='git stash && git stash apply && git diff -w > foo.patch && git checkout . && git apply foo.patch && git rm foo.patch'
 alias gitk='gitg --all &'
 alias svnlog='svn log -l 5 `git log | grep svn-id | head -n 1 | sed -e "s#git-svn-id: \([^@]\+\)@.\+#\1#"`'
+
+# open current repo on github
+# from https://gist.github.com/igrigorik/6666860
+alias gh="firefox \`git remote -v | grep git@github.com | grep fetch | head -1 | cut -f2 | cut -d' ' -f1 | sed -e's/:/\//' -e 's/git@/http:\/\//'\` &"
+
 # corrigir "mv" que deveria ter sido "git mv"
 function a ()
 {
