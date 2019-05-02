@@ -99,3 +99,13 @@
     - postactivate
     - postdeactivate
     - postmkvirtualenv
+
+# TODO this link pattern repeats in some places, try to abstract it
+- name: python - flake8 config
+  file:
+    src: "{{ files }}/{{ item }}"
+    dest: "{{ home }}/{{ item }}"
+    state: link
+    force: yes
+  with_items:
+    - .flake8

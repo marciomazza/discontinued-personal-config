@@ -1,0 +1,3 @@
+[flake8]
+# to avoir confilcts with black (see https://github.com/ambv/black#slices)
+ignore = E203
