@@ -7,3 +7,11 @@
 - name: spotify -- install
   command: snap install spotify
   become: true
+
+- file:
+    src: "{{ files }}/spotify_spotify.desktop"
+    dest: "/var/lib/snapd/desktop/applications/spotify_spotify.desktop"
+    state: link
+    owner: root
+    force: yes
+  become: true
