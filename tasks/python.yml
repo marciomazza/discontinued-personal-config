@@ -85,10 +85,6 @@
 - file: state=directory path="{{ home }}/.buildout/extends"
 - template: src=buildout/default.cfg dest="{{ home }}/.buildout/default.cfg"
 
-# To debug nicely with sauna.reload
-# https://github.com/collective/sauna.reload#debugging-with-saunareload
-- file: src="{{ files }}/.pdbrc" dest="{{ home }}/.pdbrc" state=link
-
 # virtualenvwrapper automatic actions
 - file:
     src: "{{ files }}/virtualenvs/{{ item }}"
@@ -109,3 +105,4 @@
     force: yes
   with_items:
     - .flake8
+    - .pdbrc.py
