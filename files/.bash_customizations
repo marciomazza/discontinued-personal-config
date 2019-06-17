@@ -211,7 +211,6 @@ HTML_TIDY=~/.z/tidy.conf
 export HTML_TIDY
 
 # ORACLE
-
 ORACLE_HOME=/usr/lib/oracle/xe/app/oracle/product/10.2.0/server
 export ORACLE_HOME
 export ORACLE_SID=XE
@@ -239,3 +238,5 @@ fi
 
 # TODO move this to the proper place, do it proper
 xmodmap -e "keycode 107 = Menu"
+
+export LESS="-SRXF"
