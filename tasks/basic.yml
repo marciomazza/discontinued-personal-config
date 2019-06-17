@@ -45,12 +45,6 @@
     force: yes
   with_items: "{{ home_files.files }}"
 
-- name: devtools -- geckodriver
-  unarchive:
-    src: 'https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz'
-    dest: /usr/bin
-    remote_src: yes
-
 - name: Remove unnecessary hunspell dicts
   # important to reduce languages in firefox spell checking
   file:

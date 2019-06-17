@@ -34,6 +34,7 @@
       when: '"XDG_CURRENT_DESKTOP" in ansible_env'
 
     # dev
+    - include: tasks/general_devtools.yml
     - include: tasks/python.yml
     - include: tasks/javascript.yml
     - include: tasks/vim.yml
