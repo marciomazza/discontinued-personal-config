@@ -27,12 +27,6 @@
     dest: "{{ home }}/.django_bash_completion.sh"
     mode: 0755
 
-- name: bash customizations -- link .bash_customizations file
-  file:
-    src: "{{ files }}/.bash_customizations"
-    dest: "{{ home }}/.bash_customizations"
-    state: link
-
 - name: bash customizations -- run .bash_customizations from .bash_rc
   lineinfile:
     dest: "{{ home }}/.bashrc"

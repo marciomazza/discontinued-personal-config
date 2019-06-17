@@ -9,6 +9,7 @@
     home: "{{ ansible_env.HOME }}"
     confdir: "{{ ansible_env.HOME }}/.z"
     files: "{{ confdir }}/files"
+    files_home: "{{ files }}/home"
 
   tasks:
 

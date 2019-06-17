@@ -33,26 +33,17 @@
       - silversearcher-ag
   become: true
 
-- name: basic - enumerate .config files
-  find: path="{{ confdir }}/files/config"
-  register: config_files
+- name: basic - enumerate files to link at home
+  find: path="{{ files_home }}" hidden=yes recurse=yes
+  register: home_files
 
-- name: basic - link .config files
+- name: basic - link files at home
   file:
     src: "{{ item.path }}"
-    dest: "{{ home }}/.config/{{ item.path | basename }}"
+    dest: "{{ home }}/{{ item.path | relpath(files_home) }}"
     state: link
     force: yes
-  with_items: "{{ config_files.files }}"
-
-- name: basic - general configuration files at home
-  file:
-    src: "{{ files }}/{{ item }}"
-    dest: "{{ home }}/{{ item }}"
-    state: link
-    force: yes
-  with_items:
-    - .agignore
+  with_items: "{{ home_files.files }}"
 
 - name: devtools -- geckodriver
   unarchive:
