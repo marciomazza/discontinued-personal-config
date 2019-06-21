@@ -1,3 +1,9 @@
 {
-    "telemetry.enableTelemetry": false
+    "telemetry.enableTelemetry": false,
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": true,
+    "vim.handleKeys": {
+        "<C-b>": false,
+        "<C-w>": false
+      }
 }
