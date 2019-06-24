@@ -38,3 +38,4 @@
     - include: tasks/python.yml
     - include: tasks/javascript.yml
     - include: tasks/vim.yml
+    - include: tasks/vscode.yml
