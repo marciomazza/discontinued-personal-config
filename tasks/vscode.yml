@@ -1,0 +1,16 @@
+---
+
+- apt_key: url=https://packages.microsoft.com/keys/microsoft.asc
+  become: true
+
+- apt_repository: repo='deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main'
+  become: true
+
+- apt: name=code
+  become: true
+
+- name: vscode -- install extensions
+  shell: "code --install-extension {{item}}"
+  with_items:
+    - vscodevim.vim
+    - ms-python.python
