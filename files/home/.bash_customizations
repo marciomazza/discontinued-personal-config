@@ -236,7 +236,4 @@ if [ -n "$DISPLAY" -a "$TERM" == "xterm" ]; then
     export TERM=xterm-256color
 fi
 
-# TODO move this to the proper place, do it proper
-xmodmap -e "keycode 107 = Menu"
-
 export LESS="-SRXF"
