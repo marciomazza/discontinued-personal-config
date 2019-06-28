@@ -5,5 +5,15 @@
     "workbench.statusBar.feedback.visible": false,
     "workbench.startupEditor": "newUntitledFile",
     "window.zoomLevel": -1,
+
     "vim.useCtrlKeys": false,
+    "vim.leader": ",",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "c"],
+            "commands": [
+                "workbench.action.closeActiveEditor"
+            ]
+        },
+    ],
 }
