@@ -65,6 +65,10 @@
   - /org/gnome/nautilus/preferences/default-folder-viewer "'list-view'"
   # auto hide the dock
   - /org/gnome/shell/extensions/dash-to-dock/dock-fixed "false"
+  # show dock really only when mouse touches the edge
+  # this avoids the dock appearing alongside a non maximized window
+  # https://discourse.ubuntu.com/t/ubuntu-dock-add-true-autohide-option-to-default-session/11200/4
+  - /org/gnome/shell/extensions/dash-to-dock/itellihide "false"
   # sounds and dark theme for gnome-shell-pomodoro
   - /org/gnome/pomodoro/preferences/enabled-plugins "['sounds', 'dark-theme']"
   # automatic timezone detection
@@ -74,4 +78,3 @@
   # more self explanatory tweaks
   - /org/gnome/desktop/interface/clock-show-date "true"
   - /org/gnome/desktop/interface/show-battery-percentage "true"
-
