@@ -1,21 +1,17 @@
 ---
-# install plain vim-gnome (with python 3)
-# and compile vim with python 2 support with exec name "vim2"
-
-# (compilation based on http://www.xorpd.net/blog/vim_python3_install.html)
+# based on http://www.xorpd.net/blog/vim_python3_install.html
+# and https://github.com/ycm-core/YouCompleteMe/wiki/Building-Vim-from-source
 
 - name: vim -- check if vim2 is absent
-  shell: vim2 --version
+  shell: vim --version
   register: check_vim_absent
   ignore_errors: True
 
-- name: vim -- vim-gnome (python 3) and vim2 deps (python 2)
+- name: vim -- deps
   apt:
     pkg:
       - vim-gnome
       - python-dev
-      - ruby
-      - ruby-dev
       - libx11-dev
       - libxt-dev
       - libgtk2.0-dev
@@ -27,55 +23,61 @@
 - name: vim -- clone repo (for python 2 vim)
   git:
     repo: https://github.com/vim/vim.git
-    dest: /tmp/vim
+    dest: "{{ home }}/repos/vim"
   when: check_vim_absent.rc
 
 - name: vim -- grab python 2 config dir
-  shell: python2-config --configdir
-  register: python2_config_dir
+  shell: python3.8-config --configdir
+  register: python_config_dir
   when: check_vim_absent.rc
 
 - name: vim -- configure (for python 2 vim)
   shell: "./configure
-          --enable-perlinterp
-          --enable-pythoninterp
-          --enable-rubyinterp
+          --with-features=huge
+          --enable-python3interp
           --enable-cscope
           --enable-gui=auto
           --enable-gtk2-check
           --enable-gnome-check
-          --with-features=huge
           --enable-multibyte
           --with-x
-          --with-vim-name=vim2
-          --with-ex-name=ex2
-          --with-view-name=view2
-          --with-python-config-dir={{ python2_config_dir.stdout }}"
+          --with-python3-config-dir={{ python_config_dir.stdout }}"
   args:
     chdir: /tmp/vim
   when: check_vim_absent.rc
 
-- name: vim -- make (for python 2 vim)
+- name: vim -- make
   shell: make
   args:
     chdir: /tmp/vim
   when: check_vim_absent.rc
 
-- name: vim -- make install (for python 2 vim)
+- name: vim -- make install
   shell: make install
   args:
     chdir: /tmp/vim
   become: true
   when: check_vim_absent.rc
 
+# TODO ...
+# test that this is working
+#
+# automate...
+#
+# sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
+# sudo update-alternatives --set editor /usr/local/bin/vim
+# sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
+# sudo update-alternatives --set vi /usr/local/bin/vim
+
+
 ######## my personal vim configs ########
 
-- name: vim -- directory for personal configs
+- name: vim -- directory for personal config
   file:
     path: "{{ confdir }}/vimrc"
     state: directory
 
-- name: vim -- clone my personal vim configs
+- name: vim -- clone my personal vim config
   git:
     repo: git@github.com:marciomazza/vimrc.git
     dest: "{{ confdir }}/vimrc"
@@ -85,12 +87,6 @@
     src: "{{ confdir }}/vimrc/.vimrc"
     dest: "{{ home }}/.vimrc"
     state: link
-
-- name: vim -- install requirements for python 2
-  pip:
-    executable: pip2
-    requirements: "{{ confdir }}/vimrc/requirements.txt"
-  become: true
 
 - name: vim -- install requirements for python 3
   pip:
@@ -137,4 +133,3 @@
 - name: vim - Install all plugins
   shell: vim -c ":PlugInstall" -c qa
   no_log: true
-

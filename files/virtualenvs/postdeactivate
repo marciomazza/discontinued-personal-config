@@ -1,7 +1,0 @@
-#!/bin/bash
-# This hook is sourced after every virtualenv is deactivated.
-
-# restore default e alias to vim with python 3 support
-# (see postactivate script)
-alias e="vim"
-

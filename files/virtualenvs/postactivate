@@ -1,8 +1,0 @@
-#!/bin/bash
-# This hook is sourced after every virtualenv is activated.
-
-if python --version  2>&1 >/dev/null | grep -q "Python 2";
-  then alias e="vim2" # vim2 has python 2 support
-  else alias e="vim"  # vim  has python 3 support
-fi
-
