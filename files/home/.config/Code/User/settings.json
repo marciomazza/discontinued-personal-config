@@ -4,7 +4,7 @@
     "breadcrumbs.enabled": true,
     "workbench.statusBar.feedback.visible": false,
     "workbench.startupEditor": "newUntitledFile",
-    "window.zoomLevel": -1,
+    "window.zoomLevel": 1,
 
     "vim.useCtrlKeys": false,
     "vim.leader": ",",
