@@ -10,3 +10,8 @@ c.PlainTextFormatter.max_width = 110
 #   https://github.com/ipython/ipython/issues/11530
 #   https://github.com/ipython/ipython/issues/10926
 c.Completer.use_jedi = False
+
+# https://github.com/anntzer/ipython-autoimport
+c.InteractiveShellApp.exec_lines.append(
+    "try:\n    %load_ext ipython_autoimport\nexcept ImportError: pass"
+)
