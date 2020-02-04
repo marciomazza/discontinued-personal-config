@@ -34,6 +34,18 @@
       - silversearcher-ag
   become: true
 
+- name: basic - enumerate home subdirs for links
+  find: path="{{ files_home }}" hidden=yes recurse=yes file_type=directory
+  register: home_subdirs
+
+- name: basic - create home subdirs
+  file:
+    src: "{{ item.path }}"
+    dest: "{{ home }}/{{ item.path | relpath(files_home) }}"
+    state: directory
+    force: yes
+  with_items: "{{ home_subdirs.files }}"
+
 - name: basic - enumerate files to link at home
   find: path="{{ files_home }}" hidden=yes recurse=yes
   register: home_files
