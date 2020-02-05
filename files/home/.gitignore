@@ -58,3 +58,4 @@ zdev.cfg
 zzz*
 *.orig
 geckodriver.log
+.mypy_cache
