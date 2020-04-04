@@ -2,7 +2,7 @@
 # based on http://www.xorpd.net/blog/vim_python3_install.html
 # and https://github.com/ycm-core/YouCompleteMe/wiki/Building-Vim-from-source
 
-- name: vim -- check if vim2 is absent
+- name: vim -- check if vim is absent
   shell: vim --version
   register: check_vim_absent
   ignore_errors: True
@@ -20,28 +20,23 @@
       - exuberant-ctags
   become: true
 
-- name: vim -- clone repo (for python 2 vim)
+- name: vim -- clone repo
   git:
     repo: https://github.com/vim/vim.git
     dest: "{{ home }}/repos/vim"
   when: check_vim_absent.rc
 
-- name: vim -- grab python 2 config dir
-  shell: python3.8-config --configdir
-  register: python_config_dir
-  when: check_vim_absent.rc
-
-- name: vim -- configure (for python 2 vim)
+- name: vim -- configure
   shell: "./configure
-          --with-features=huge
-          --enable-python3interp
-          --enable-cscope
-          --enable-gui=auto
-          --enable-gtk2-check
-          --enable-gnome-check
-          --enable-multibyte
-          --with-x
-          --with-python3-config-dir={{ python_config_dir.stdout }}"
+            --with-features=huge
+            --enable-cscope
+            --enable-gui=auto
+            --enable-gtk2-check
+            --enable-gnome-check
+            --enable-multibyte
+            --with-x
+            --enable-python3interp=dynamic
+            --with-python3-command=python3.8"
   args:
     chdir: /tmp/vim
   when: check_vim_absent.rc
@@ -52,6 +47,7 @@
     chdir: /tmp/vim
   when: check_vim_absent.rc
 
+# TODO...  use checkinstall instead
 - name: vim -- make install
   shell: make install
   args:
@@ -68,6 +64,7 @@
 # sudo update-alternatives --set editor /usr/local/bin/vim
 # sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
 # sudo update-alternatives --set vi /usr/local/bin/vim
+#
 
 
 ######## my personal vim configs ########
@@ -88,10 +85,18 @@
     dest: "{{ home }}/.vimrc"
     state: link
 
+# TODO install pip3.8 for python3.8
+# https://pip.pypa.io/en/stable/installing/
+# curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+
+# TODO see if become is really necessary
 - name: vim -- install requirements for python 3
   pip:
-    executable: pip3
-    requirements: "{{ confdir }}/vimrc/requirements.txt"
+    executable: pip3.8
+    name:
+      - black
+      - isort
+      - mypy
   become: true
 
 # setup powerline fonts
