@@ -61,3 +61,4 @@ geckodriver.log
 .mypy_cache
 .hypothesis
 .pytype
+.tox
