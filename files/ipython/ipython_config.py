@@ -1,4 +1,4 @@
-c = get_config()
+c = get_config()  # noqa
 c.InteractiveShell.autocall = 2
 c.InteractiveShell.logstart = True
 c.InteractiveShellApp.extensions = ["autoreload"]
