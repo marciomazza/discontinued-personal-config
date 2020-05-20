@@ -47,16 +47,20 @@
   with_items: "{{ home_subdirs.files }}"
 
 - name: basic - enumerate files to link at home
-  find: path="{{ files_home }}" hidden=yes recurse=yes
+  find: path="{{ files_home }}" hidden=yes recurse=yes file_type="{{ item }}"
   register: home_files
+  loop:
+    - file
+    - link
 
 - name: basic - link files at home
   file:
-    src: "{{ item.path }}"
-    dest: "{{ home }}/{{ item.path | relpath(files_home) }}"
+    src: "{{ item }}"
+    dest: "{{ home }}/{{ item | relpath(files_home) }}"
     state: link
     force: yes
-  with_items: "{{ home_files.files }}"
+  loop: "{{ home_files.results | map(attribute='files') | flatten | map(attribute='path') | list }}"
+
 
 - name: Remove unnecessary hunspell dicts
   # important to reduce languages in firefox spell checking
