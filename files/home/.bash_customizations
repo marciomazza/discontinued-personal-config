@@ -218,17 +218,6 @@ PS1="$CYAN\h:$YELLOW\$(ps1_base)$NO_COLOUR\$(ps1_sharp) "
 HTML_TIDY=~/.z/tidy.conf
 export HTML_TIDY
 
-# ORACLE
-ORACLE_HOME=/usr/lib/oracle/xe/app/oracle/product/10.2.0/server
-export ORACLE_HOME
-export ORACLE_SID=XE
-
-PATH=$PATH:$ORACLE_HOME/bin
-export PATH
-
-SQLPATH=~/.z/oracle-sql
-export SQLPATH
-
 export EDITOR='vim'
 
 # default para sauna.reload
