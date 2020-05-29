@@ -1,4 +1,16 @@
 ---
+- name: devtools - common programs
+  apt:
+    pkg:
+      # databases
+      - mysql-server
+      - mysql-client
+      - libmysqlclient-dev # to be able to pip install MySQL-python
+      - postgresql
+
+      # dev tools
+      - nodejs
+      - ruby-sass
 
 - name: devtools -- geckodriver
   unarchive:

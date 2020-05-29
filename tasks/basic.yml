@@ -3,7 +3,6 @@
   apt:
     pkg:
       # basic ######################################
-      - python-pip
       - python3-pip
       - tree
       - trash-cli
@@ -11,27 +10,14 @@
       - curl
       - terminator
       - smbclient
+      - silversearcher-ag
+      - neovim
+      - git
 
       # infra ######################################
       - htop
       - ncdu
 
-      # dev ########################################
-      # version control
-      - git
-      - subversion
-      - mercurial
-
-      # databases
-      - mysql-server
-      - mysql-client
-      - libmysqlclient-dev # to be able to pip install MySQL-python
-      - postgresql
-
-      # dev tools
-      - nodejs
-      - ruby-sass
-      - silversearcher-ag
   become: true
 
 - name: basic - enumerate home subdirs for links
