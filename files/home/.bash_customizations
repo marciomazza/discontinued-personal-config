@@ -218,6 +218,9 @@ PS1="$CYAN\h:$YELLOW\$(ps1_base)$NO_COLOUR\$(ps1_sharp) "
 HTML_TIDY=~/.z/tidy.conf
 export HTML_TIDY
 
+PATH=$PATH:$HOME/.local/bin
+export PATH
+
 export EDITOR='vim'
 
 # default para sauna.reload
