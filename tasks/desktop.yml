@@ -2,25 +2,23 @@
 - name: desktop - common programs
   apt:
     pkg:
+      # gnome adjustments
+      - gnome-tweak-tool
+      - gnome-shell-extensions
+      - gnome-shell-pomodoro
+
       # general desktop apps
       - vlc
       - gimp
       - imagemagick
-      - unity-tweak-tool
-      - gnome-tweak-tool
-      - dconf-tools
+      - dconf-editor
       - audacity
       - mplayer
-      - gnome-shell-pomodoro
-      - byobu
-
-      # for banco do brasil
-      - openjdk-8-jre
-      - icedtea-8-plugin
+      - xournal
 
       # database visual clients
-      - mysql-workbench
       - pgadmin3
+
   become: true
 
 
@@ -37,40 +35,37 @@
 - name: desktop -- dconf customizations
   command: dconf write {{ item }}
   with_items:
-  # disable show hud on Alt
-  - /org/compiz/integrated/show-hud '[""]'
   # workspaces 2x2
   # TODO ... install via ansible (now it's still manual)
   # ---->>>> https://extensions.gnome.org/extension/484/workspace-grid/
   - /org/gnome/mutter/dynamic-workspaces "false"
   - /org/gnome/desktop/wm/preferences/num-workspaces 4
   - /org/gnome/shell/extensions/workspace-grid/num-columns 2
+  - /org/gnome/shell/extensions/workspace-grid/num-rows 2
   - /org/gnome/shell/extensions/workspace-grid/show-workspace-labels "false"
   # force alt + tab to switch only on current workspace
   - /org/gnome/shell/app-switcher/current-workspace-only "true"
   # Caps => another Ctrl, 2 shifts => caps on, one shift => caps off, right alt is compose (mainly to write ß)
   - /org/gnome/desktop/input-sources/xkb-options "['caps:ctrl_modifier', 'shift:both_capslock_cancel', 'compose:ralt']"
-  # auto hide launcher
-  - /org/compiz/profiles/unity/plugins/unityshell/launcher-hide-mode 1
-  # transparent upper panel
-  - /org/compiz/profiles/unity/plugins/unityshell/panel-opacity 0.0
-  # disable Integration Prompts
-  - /com/canonical/unity/webapps/preauthorized-domains "@as []"
-  - /com/canonical/unity/webapps/integration-allowed "false"
-  # disable Search online sources
-  - /com/canonical/unity/lenses/remote-content-search "'none'"
+
   # laucher favorites
-  - /com/canonical/unity/launcher/favorites "['application://firefox.desktop', 'application://org.gnome.Nautilus.desktop', 'application://google-chrome.desktop', 'unity://running-apps', 'unity://expo-icon', 'unity://devices']"
+  - /org/gnome/shell/favorite-apps "['firefox.desktop', 'org.gnome.Nautilus.desktop']"
+
   # use list view by default in nautilus
   - /org/gnome/nautilus/preferences/default-folder-viewer "'list-view'"
   # auto hide the dock
   - /org/gnome/shell/extensions/dash-to-dock/dock-fixed "false"
+  - /org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size 32
   # show dock really only when mouse touches the edge
   # this avoids the dock appearing alongside a non maximized window
   # https://discourse.ubuntu.com/t/ubuntu-dock-add-true-autohide-option-to-default-session/11200/4
   - /org/gnome/shell/extensions/dash-to-dock/itellihide "false"
+
+  # night light on
+  - /org/gnome/settings-daemon/plugins/color/night-light-enabled "true"
+
   # sounds and dark theme for gnome-shell-pomodoro
-  - /org/gnome/pomodoro/preferences/enabled-plugins "['sounds', 'dark-theme']"
+  # - /org/gnome/pomodoro/preferences/enabled-plugins "['sounds', 'dark-theme']"
   # automatic timezone detection
   - /org/gnome/desktop/datetime/automatic-timezone "true"
   # do not show icons on desktop
